@@ -13,20 +13,7 @@
       font-family: 'Helvetica Neue', sans-serif;
       background: #eef2f5;
       margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .container {
-      background: #fff;
       padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 360px;
     }
 
     h2 {
@@ -35,15 +22,27 @@
       margin-bottom: 20px;
     }
 
-    .merchant {
-      background-color: #f9fafb;
-      border: 1px solid #e5e7eb;
-      padding: 10px;
-      border-radius: 12px;
-      margin-bottom: 20px;
+    .grid-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .column {
+      flex: 1 1 300px;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      gap: 20px;
+    }
+
+    .merchant {
+      background-color: #fff;
+      border: 1px solid #e5e7eb;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+      text-align: center;
     }
 
     .merchant-name {
@@ -51,13 +50,12 @@
       font-weight: 600;
       margin-bottom: 12px;
       color: #111827;
-      text-align: center;
     }
 
     .qr img {
       width: 100px;
       height: 100px;
-      border-radius: 12px;
+      border-radius: 8px;
       border: 1px solid #ccc;
       margin-bottom: 12px;
     }
@@ -72,6 +70,7 @@
       font-weight: 600;
       border-radius: 8px;
       transition: background-color 0.2s ease;
+      display: inline-block;
     }
 
     .pay-button:hover {
@@ -80,33 +79,42 @@
   </style>
 </head>
 <body>
-  <div class="container">
- 
-
-    <div class="merchant">
-      <div class="merchant-name">Shamim Steel Industry</div>
-      <div class="qr">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=shamimsteelindustry@sbi&pn=SHAMIM%20STEEL%20INDUSTRY&am=1&cu=INR&size=150x150" alt="Shamim QR">
+  <h2>Instant UPI Checkout</h2>
+  <div class="grid-container">
+    <div class="column">
+      <div class="merchant">
+        <div class="merchant-name">Shamim Steel Industry</div>
+        <div class="qr">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=shamimsteelindustry@sbi&pn=SHAMIM%20STEEL%20INDUSTRY&am=1&cu=INR&size=150x150" alt="Shamim QR">
+        </div>
+        <a class="pay-button" href="upi://pay?pa=shamimsteelindustry@sbi&pn=SHAMIM%20STEEL%20INDUSTRY&am=1&cu=INR">Pay with Any App</a>
       </div>
-      <a class="pay-button" href="upi://pay?pa=shamimsteelindustry@sbi&pn=SHAMIM%20STEEL%20INDUSTRY&am=1&cu=INR">Pay with Any App</a>
-    </div>
 
-    <div class="merchant">
-      <div class="merchant-name">KARRI PANDU</div>
-      <div class="qr">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=2&cu=INR&size=150x150" alt="KARRI QR">
+      <div class="merchant">
+        <div class="merchant-name">KARRI PANDU (All UPI Apps)</div>
+        <div class="qr">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=1&cu=INR&size=150x150" alt="KARRI QR">
+        </div>
+        <a class="pay-button" href="upi://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=1&cu=INR">Pay with Any App</a>
       </div>
-      <a class="pay-button" href="upi://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=2&cu=INR">Pay with Any App</a>
-    </div>
+</div>
+ <div class="column">
+      <div class="merchant">
+        <div class="merchant-name">UPI KARRI TEST</div>
+        <a class="pay-button" href="upi://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=3&cu=INR" id="__UPI_BUTTON__">Pay Now</a>
+      </div>
+    
 
-    <div class="merchant">
-      <div class="merchant-name">KARRI PANDU (Paytm)</div>
-      <a class="pay-button" href="intent://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=10&cu=INR&tn=DemoPayment&tr=123#Intent;scheme=upi;package=net.one97.paytm;end">Pay with Paytm</a>
-    </div>
+   
+      <div class="merchant">
+        <div class="merchant-name">KARRI PANDU (Paytm)</div>
+        <a class="pay-button" href="intent://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=10&cu=INR&tn=DemoPayment&tr=123#Intent;scheme=upi;package=net.one97.paytm;end">Pay with Paytm</a>
+      </div>
 
-    <div class="merchant">
-      <div class="merchant-name">KARRI PANDU (PhonePe)</div>
-      <a class="pay-button" href="intent://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=10&cu=INR&tn=DemoPayment&tr=123#Intent;scheme=upi;package=com.phonepe.app;end">Pay with PhonePe</a>
+      <div class="merchant">
+        <div class="merchant-name">KARRI PANDU (PhonePe)</div>
+        <a class="pay-button" href="intent://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=10&cu=INR&tn=DemoPayment&tr=123#Intent;scheme=upi;package=com.phonepe.app;end">Pay with PhonePe</a>
+      </div>
     </div>
   </div>
 </body>
