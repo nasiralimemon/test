@@ -1,10 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8"><title>UPI Payment Demo</title></head>
-<body style="text-align:center;padding-top:50px">
-  <h2>UPI Pay Now</h2>
-  <button onclick="window.location.href='upi://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=10&cu=INR&tn=DemoTest&tr='+Date.now()">Pay with Any UPI App</button>
-  <br><br>
-  <button onclick="window.location.href='intent://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=10&cu=INR&tn=DemoTest&tr='+Date.now()+'#Intent;scheme=upi;package=com.phonepe.app;end'">Pay with PhonePe</button>
-</body>
-</html>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <title>UPI Payment Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 20px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: white;
+      padding: 19px;
+      border-radius: 20px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      max-width: 300px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .container h2 {
+      margin-top: 0;
+      font-size: 12px;
+      color: #222;
+    }
+
+    .merchant {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f0f0f0;
+      padding: 9px;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+
+    .merchant-name {
+      flex-grow: 1;
+      margin-left: 12px;
+      font-weight: 900;
+      color: #333;
+      text-align: left;
+	  font-size: 12px;
+    }
+
+    .merchant a {
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 13px;
+      border-radius: 6px;
+    }
+
+    h3 {
+      color: #555;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 6px;
+      margin-top: 10px;
+	  font-size: 12px;
+    }
+  </style>
+<script defer="" data-domain="nasir.tiiny.site" src="https://analytics.tiiny.site/js/plausible.js"></script><script type="text/javascript" src="https://tiiny.host/ad-script.js"></script><script defer="" data-domain="nasir.tiiny.site" src="https://analytics.tiiny.site/js/plausible.js"></script><script type="text/javascript" src="https://tiiny.host/ad-script.js"></script></head>
+<body>
+  <div class="container">
+    <h3>Option 1: UPI Scheme</h3>
+    <div class="merchant">
+      <div class="merchant-name">Shamim Steel Industry</div>
+      <a href="upi://pay?pa=shamimsteelindustry@sbi&amp;pn=SHAMIM%20STEEL%20INDUSTRY&amp;am=1&amp;cu=INR">Pay Now</a>
+    </div>
+    <div class="merchant">
+      <div class="merchant-name">KARRI PANDU</div>
+      <a href="upi://pay?pa=9100702099@axl&amp;pn=KARRI%20PANDU&amp;am=1&amp;cu=INR">Pay Now</a>
+    </div>
+
+    <h3>Option 2: Intent Scheme</h3>
+    <div class="merchant">
+      <div class="merchant-name">Shamim Steel Industry</div>
+      <a href="intent://pay?pa=shamimsteelindustry@sbi&amp;pn=SHAMIM%20STEEL%20INDUSTRY&amp;am=1&amp;cu=INR#Intent;scheme=upi;package=com.phonepe.app;end">Pay Now</a>
+    </div>
+     <div class="merchant">
+      <div class="merchant-name">Shamim Steel Industry</div>
+      <a href="intent://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=10&cu=INR&tn=DemoPayment&tr=123#Intent;scheme=upi;package=net.one97.paytm;end">Pay Now</a>
+    </div>
+    <div class="merchant">
+      <div class="merchant-name">KARRI PANDU</div>
+      <a href="intent://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=10&cu=INR&tn=DemoPayment&tr=123#Intent;scheme=upi;package=net.one97.paytm;end">Pay Now</a>
+    </div>
+
+  </div>
+
+</body></html>
