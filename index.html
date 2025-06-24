@@ -1,95 +1,113 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
-  <title>UPI Payment Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPI Checkout</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      padding: 20px 20px;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #eef2f5;
+      margin: 0;
+      padding: 0;
       display: flex;
       justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
     .container {
-      background: white;
-      padding: 19px;
-      border-radius: 20px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-      max-width: 300px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       width: 100%;
-      text-align: center;
+      max-width: 360px;
     }
 
-    .container h2 {
-      margin-top: 0;
-      font-size: 12px;
-      color: #222;
+    h2 {
+      text-align: center;
+      color: #1f2937;
+      margin-bottom: 20px;
     }
 
     .merchant {
+      background-color: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 10px;
+      border-radius: 12px;
+      margin-bottom: 20px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      background: #f0f0f0;
-      padding: 9px;
-      border-radius: 10px;
-      margin: 15px 0;
     }
 
     .merchant-name {
-      flex-grow: 1;
-      margin-left: 12px;
-      font-weight: 900;
-      color: #333;
-      text-align: left;
-	  font-size: 12px;
-    }
-
-    .merchant a {
-      padding: 8px 16px;
-      background-color: #4CAF50;
-      color: white;
+      font-size: 16px;
       font-weight: 600;
-      text-decoration: none;
-      font-size: 13px;
-      border-radius: 6px;
+      margin-bottom: 12px;
+      color: #111827;
+      text-align: center;
     }
 
-    h3 {
-      color: #555;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 6px;
-      margin-top: 10px;
-	  font-size: 12px;
+    .qr img {
+      width: 100px;
+      height: 100px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      margin-bottom: 12px;
+    }
+
+    .pay-button {
+      padding: 10px 20px;
+      background-color: #10b981;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+    }
+
+    .pay-button:hover {
+      background-color: #059669;
     }
   </style>
-<script defer="" data-domain="nasir.tiiny.site" src="https://analytics.tiiny.site/js/plausible.js"></script><script type="text/javascript" src="https://tiiny.host/ad-script.js"></script><script defer="" data-domain="nasir.tiiny.site" src="https://analytics.tiiny.site/js/plausible.js"></script><script type="text/javascript" src="https://tiiny.host/ad-script.js"></script></head>
+</head>
 <body>
   <div class="container">
-    <h3>Option 1: UPI Scheme</h3>
+ 
+
     <div class="merchant">
       <div class="merchant-name">Shamim Steel Industry</div>
-      <a href="upi://pay?pa=shamimsteelindustry@sbi&amp;pn=SHAMIM%20STEEL%20INDUSTRY&amp;am=1&amp;cu=INR">Pay Now</a>
-    </div>
-    <div class="merchant">
-      <div class="merchant-name">KARRI PANDU</div>
-      <a href="upi://pay?pa=9100702099@axl&amp;pn=KARRI%20PANDU&amp;am=1&amp;cu=INR">Pay Now</a>
+      <div class="qr">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=shamimsteelindustry@sbi&pn=SHAMIM%20STEEL%20INDUSTRY&am=1&cu=INR&size=150x150" alt="Shamim QR">
+      </div>
+      <a class="pay-button" href="upi://pay?pa=shamimsteelindustry@sbi&pn=SHAMIM%20STEEL%20INDUSTRY&am=1&cu=INR">Pay with Any App</a>
     </div>
 
-    <h3>Option 2: Intent Scheme</h3>
-    <div class="merchant">
-      <div class="merchant-name">Shamim Steel Industry</div>
-      <a href="intent://pay?pa=shamimsteelindustry@sbi&amp;pn=SHAMIM%20STEEL%20INDUSTRY&amp;am=1&amp;cu=INR#Intent;scheme=upi;package=com.phonepe.app;end">Pay Now</a>
-    </div>
-     <div class="merchant">
-      <div class="merchant-name">Shamim Steel Industry</div>
-      <a href="intent://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=10&cu=INR&tn=DemoPayment&tr=123#Intent;scheme=upi;package=net.one97.paytm;end">Pay Now</a>
-    </div>
     <div class="merchant">
       <div class="merchant-name">KARRI PANDU</div>
-      <a href="intent://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=10&cu=INR&tn=DemoPayment&tr=123#Intent;scheme=upi;package=net.one97.paytm;end">Pay Now</a>
+      <div class="qr">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=1&cu=INR&size=150x150" alt="KARRI QR">
+      </div>
+      <a class="pay-button" href="upi://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=1&cu=INR">Pay with Any App</a>
     </div>
 
+    <div class="merchant">
+      <div class="merchant-name">KARRI PANDU (Paytm)</div>
+      <a class="pay-button" href="intent://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=10&cu=INR&tn=DemoPayment&tr=123#Intent;scheme=upi;package=net.one97.paytm;end">Pay with Paytm</a>
+    </div>
+
+    <div class="merchant">
+      <div class="merchant-name">KARRI PANDU (PhonePe)</div>
+      <a class="pay-button" href="intent://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=10&cu=INR&tn=DemoPayment&tr=123#Intent;scheme=upi;package=com.phonepe.app;end">Pay with PhonePe</a>
+    </div>
   </div>
-
-</body></html>
+</body>
+</html>
