@@ -1,27 +1,65 @@
-<a href="#" class="cta" onclick="openEasyPaisa()">Open EasyPaisa App</a>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pay Now with EasyPaisa</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+  }
+  .pay-btn {
+    background-color: #0d9f6e;
+    color: white;
+    padding: 14px 28px;
+    font-size: 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .pay-btn:hover {
+    background-color: #0b855a;
+  }
+</style>
+</head>
+<body>
+
+<h2>Pay Now with EasyPaisa</h2>
+<a href="#" class="pay-btn" onclick="openEasypaisa()">Pay Now</a>
 
 <script>
-function openEasyPaisa() {
-  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-  const now = new Date().getTime();
-  
-  // Try opening the app
-  window.location = "easypaisa://";
+function openEasypaisa() {
+  const isAndroid = /Android/i.test(navigator.userAgent);
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  // Set fallback after 2 seconds
-  setTimeout(function() {
-    const elapsed = new Date().getTime() - now;
-    // If elapsed time is less than 2000ms, the app likely didn’t open
-    if (elapsed < 2000) {
-      if (/android/i.test(userAgent)) {
-        window.location = "https://play.google.com/store/apps/details?id=pk.com.telenor.phoenix";
-      } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.location = "https://apps.apple.com/pk/app/easypaisa/id486269758";
-      }
-    }
-  }, 1500);
+  if (isAndroid) {
+    // Try opening via intent (most reliable on Android)
+    window.location = "intent://#Intent;scheme=easypaisa;package=pk.com.telenor.phoenix;end";
+
+    // Fallback after 1.5 sec
+    setTimeout(() => {
+      window.location = "https://play.google.com/store/apps/details?id=pk.com.telenor.phoenix";
+    }, 1500);
+  }
+  else if (isIOS) {
+    // Try opening app
+    window.location = "easypaisa://";
+
+    // Fallback after 1.5 sec
+    setTimeout(() => {
+      window.location = "https://apps.apple.com/pk/app/easypaisa/id486269758";
+    }, 1500);
+  }
+  else {
+    alert("Please open on your mobile device with EasyPaisa installed.");
+  }
 }
 </script>
+
+</body>
+</html>
 
 <!DOCTYPE html>
 <html lang="en">
