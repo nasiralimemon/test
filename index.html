@@ -1,7 +1,27 @@
-<a class="cta" 
-   href="intent://#Intent;scheme=easypaisa;package=pk.com.telenor.phoenix;end">
-   Open EasyPaisa App
-</a>
+<a href="#" class="cta" onclick="openEasyPaisa()">Open EasyPaisa App</a>
+
+<script>
+function openEasyPaisa() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  // If Android
+  if (/android/i.test(userAgent)) {
+    window.location = "intent://#Intent;scheme=easypaisa;package=pk.com.telenor.phoenix;end";
+  }
+  // If iOS
+  else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    window.location = "easypaisa://";
+    // Fallback after 2 sec if app not installed
+    setTimeout(function(){
+      window.location = "https://apps.apple.com/pk/app/easypaisa/id486269758";
+    }, 2000);
+  }
+  // If neither
+  else {
+    alert("Please open this link on your mobile device with EasyPaisa installed.");
+  }
+}
+</script>
 
 <!DOCTYPE html>
 <html lang="en">
