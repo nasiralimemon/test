@@ -1,35 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Open Easypaisa</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easypaisa App Open Test</title>
   <style>
+    body {font-family: Arial, sans-serif; text-align:center; padding:40px; background:#f9f9f9;}
+    h2 {margin:20px 0; color:#333;}
     .btn {
       display:inline-block;
+      margin:10px;
       padding:14px 24px;
       border-radius:8px;
       background:#2e8b57;
       color:#fff;
-      font-size:18px;
+      font-size:16px;
       text-decoration:none;
     }
   </style>
 </head>
-<body style="text-align:center; padding-top:50px;">
+<body>
 
-  <a href="#" id="openApp" class="btn">Open Easypaisa</a>
+  <h2>📱 Easypaisa App Open Test</h2>
+
+  <!-- iOS Custom Scheme -->
+  <a href="easypaisa://" class="btn">iOS: easypaisa://</a><br>
+
+  <!-- Android Market Link -->
+  <a href="market://details?id=pk.com.telenor.phoenix" class="btn">Android: market:// link</a><br>
+
+  <!-- Android Intent (Chrome/Samsung only) -->
+  <a href="intent://details?id=pk.com.telenor.phoenix#Intent;scheme=market;package=com.android.vending;end" 
+     class="btn">Android: intent:// link</a><br>
+
+  <!-- Play Store Fallback (works everywhere) -->
+  <a href="https://play.google.com/store/apps/details?id=pk.com.telenor.phoenix" target="_blank" class="btn">
+    Open Play Store Page
+  </a><br>
+
+  <!-- JavaScript Try App → then Fallback -->
+  <a href="#" id="jsTest" class="btn">JS Attempt (try app, else Play Store)</a>
 
   <script>
-    document.getElementById("openApp").addEventListener("click", function(e) {
+    document.getElementById("jsTest").addEventListener("click", function(e){
       e.preventDefault();
+      var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      var isAndroid = /Android/i.test(navigator.userAgent);
 
-      // Try opening the app
-      window.location.href = "easypaisa://";
-
-      // If app not installed, fallback after 2 sec
-      setTimeout(function () {
-        window.location.href = "https://play.google.com/store/apps/details?id=pk.com.telenor.phoenix";
-      }, 6000);
+      if(isIOS){
+        window.location = "easypaisa://";
+        setTimeout(function(){
+          window.location = "https://apps.apple.com/pk/app/easypaisa/id491086906";
+        }, 2000);
+      } else if(isAndroid){
+        window.location = "market://details?id=pk.com.telenor.phoenix";
+        setTimeout(function(){
+          window.location = "https://play.google.com/store/apps/details?id=pk.com.telenor.phoenix";
+        }, 2000);
+      } else {
+        alert("Not iOS or Android device.");
+      }
     });
   </script>
 
