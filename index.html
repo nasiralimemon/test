@@ -1,201 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pay Now with EasyPaisa</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 50px;
-  }
-  .pay-btn {
-    background-color: #0d9f6e;
-    color: white;
-    padding: 14px 28px;
-    font-size: 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    display: inline-block;
-  }
-  .pay-btn:hover {
-    background-color: #0b855a;
-  }
-</style>
-</head>
-<body>
-
-<a href="market://details?id=pk.com.telenor.phoenix">Open Easypaisa</a>
-
-
-  
-<a href="intent://#Intent;scheme=easypaisa;package=pk.com.telenor.phoenix;end" 
-   style="display:inline-block;padding:12px 20px;background:#4CAF50;color:#fff;
-          border-radius:8px;text-decoration:none;font-size:16px;">
-   Open Easypaisa
-</a>
-
-<h2>Pay Now with EasyPaisa</h2>
-<a href="#" class="pay-btn" onclick="openEasypaisa()">Pay Now</a>
-
-<script>
-function openEasypaisa() {
-  const isAndroid = /Android/i.test(navigator.userAgent);
-  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-  if (isAndroid) {
-    // Try opening via intent (most reliable on Android)
-    window.location = "intent://#Intent;scheme=easypaisa;package=pk.com.telenor.phoenix;end";
-
-    // Fallback after 1.5 sec
-    setTimeout(() => {
-      window.location = "https://play.google.com/store/apps/details?id=pk.com.telenor.phoenix";
-    }, 1500);
-  }
-  else if (isIOS) {
-    // Try opening app
-    window.location = "easypaisa://";
-
-    // Fallback after 1.5 sec
-    setTimeout(() => {
-      window.location = "https://apps.apple.com/pk/app/easypaisa/id486269758";
-    }, 1500);
-  }
-  else {
-    alert("Please open on your mobile device with EasyPaisa installed.");
-  }
-}
-</script>
-
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UPI Checkout</title>
+  <meta charset="utf-8">
+  <title>Open Easypaisa</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Helvetica Neue', sans-serif;
-      background: #eef2f5;
-      margin: 0;
-      padding: 20px;
-    }
-
-    h2 {
-      text-align: center;
-      color: #1f2937;
-      margin-bottom: 20px;
-    }
-
-    .grid-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .column {
-      flex: 1 1 300px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .merchant {
-      background-color: #fff;
-      border: 1px solid #e5e7eb;
-      padding: 16px;
-      border-radius: 12px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
-      text-align: center;
-    }
-
-    .merchant-name {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: #111827;
-    }
-
-    .qr img {
-      width: 100px;
-      height: 100px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      margin-bottom: 12px;
-    }
-
-    .pay-button {
-      padding: 10px 20px;
-      background-color: #10b981;
-      color: white;
-      text-align: center;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 8px;
-      transition: background-color 0.2s ease;
-      display: inline-block;
-    }
-
-    .pay-button:hover {
-      background-color: #059669;
+    .btn {
+      display:inline-block;
+      padding:14px 24px;
+      border-radius:8px;
+      background:#2e8b57;
+      color:#fff;
+      font-size:18px;
+      text-decoration:none;
     }
   </style>
 </head>
-<body>
-  <h2>Instant UPI Checkout</h2>
-  <div class="grid-container">
-    <div class="column">
-      <div class="merchant">
-        <div class="merchant-name">Shamim Steel Industry</div>
-        <div class="qr">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=shamimsteelindustry@sbi&pn=SHAMIM%20STEEL%20INDUSTRY&am=1&cu=INR&size=150x150" alt="Shamim QR">
-        </div>
-        <a class="pay-button" href="upi://pay?pa=shamimsteelindustry@sbi&pn=SHAMIM%20STEEL%20INDUSTRY&am=1&cu=INR">Pay with Any App</a>
-      </div>
+<body style="text-align:center; padding-top:50px;">
 
-      <div class="merchant">
-        <div class="merchant-name">KARRI PANDU (All UPI Apps)</div>
-        <div class="qr">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=1&cu=INR&size=150x150" alt="KARRI QR">
-        </div>
-        <a class="pay-button" href="upi://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=1&cu=INR">Pay with Any App</a>
-      </div>
+  <a href="#" id="openApp" class="btn">Open Easypaisa</a>
 
-      <div class="merchant">
-        <div class="merchant-name">PPQR01.PGEONU@iob - (ALL UPI APPS)</div>
-       
-        <a class="pay-button" href="upi://pay?pa=PPQR01.PGEONU@iob&pn=PPQR01.PGEONU&am=5&cu=INR">Pay with Any App</a>
-      </div>
-      
-</div>
- <div class="column">
-      <div class="merchant">
-        <div class="merchant-name">UPI KARRI TEST</div>
-        <a class="pay-button" href="upi://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=3&cu=INR" id="__UPI_BUTTON__">Pay Now</a>
-      </div>
-    
+  <script>
+    document.getElementById("openApp").addEventListener("click", function(e) {
+      e.preventDefault();
 
-   
-      <div class="merchant">
-        <div class="merchant-name">KARRI PANDU (Paytm)</div>
-        <a class="pay-button" href="intent://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=10&cu=INR&tn=DemoPayment&tr=123#Intent;scheme=upi;package=net.one97.paytm;end">Pay with Paytm</a>
-      </div>
+      // Try opening the app
+      window.location.href = "easypaisa://";
 
-      <div class="merchant">
-        <div class="merchant-name">KARRI PANDU (PhonePe)</div>
-        <a class="pay-button" href="intent://pay?pa=9100702099@axl&pn=KARRI%20PANDU&am=10&cu=INR&tn=DemoPayment&tr=123#Intent;scheme=upi;package=com.phonepe.app;end">Pay with PhonePe</a>
-      </div>
-    </div>
-  </div>
+      // If app not installed, fallback after 2 sec
+      setTimeout(function () {
+        window.location.href = "https://play.google.com/store/apps/details?id=pk.com.telenor.phoenix";
+      }, 2000);
+    });
+  </script>
+
 </body>
 </html>
